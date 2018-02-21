@@ -1,0 +1,66 @@
+
+<div class="col-md-6 col-md-offset-3">
+  <h1 *ngIf="currentUser">Hi {{currentUser.firstName}}!</h1>      
+  <div *ngIf="reportsFlag && currentUser">
+    <h3>The reports user {{currentUser.firstName}} has realized:</h3>
+    <ul>
+        <li *ngFor="let report of reports">
+            {{report}}          
+        </li>
+    </ul>
+  </div>
+  <form name="form" (ngSubmit)="f.form.valid && search()" #f="ngForm" novalidate>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+    <label class="control-label">Reports By Email</label>
+    <input class="form-control" type="email" name="email" [(ngModel)]="data" #email="ngModel" required/>  
+    <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+</div>
+<div class="form-group">
+    <br>
+    <button class="btn btn-primary">Search</button>
+</div>
+</form>
+  <button *ngIf="loading" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+  <div *ngIf="dataApi">
+      <h4>Names</h4>
+        <li *ngFor="let hero of dataApi.names">
+            {{hero.full}}
+        </li>
+  </div>  
+  <div *ngIf="dataApi">
+        <h4>Emails</h4>
+        <li *ngFor="let hero of dataApi.emails">
+            {{hero.email_address}}
+        </li>
+  </div>
+  <div *ngIf="dataApi">
+        <h4>Social</h4>
+        <ol>
+            <li *ngFor="let hero of dataApi.social">
+                <ul>
+                    <li>
+                            Red Social: {{hero.type}}       
+                    </li>
+                    <li>
+                            URL: {{hero.url}}
+                    </li>
+                </ul>                
+            </li>
+        </ol>
+  </div>
+  <div *ngIf="dataApi">
+        <h4>Jobs</h4>
+        <ol>
+            <li *ngFor="let hero of dataApi.jobs">
+                    <ul>
+                        <li>
+                                Company: {{hero.company}}
+                        </li>
+                        <li>
+                                Position: {{hero.title}}
+                        </li>
+                    </ul>                                                
+            </li>
+        </ol>
+  </div>    
+</div>

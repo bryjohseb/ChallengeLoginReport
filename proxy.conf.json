@@ -1,0 +1,7 @@
+{
+    "/hk/dd/*": {
+      "target": "https://www.beenverified.com/hk/dd/email?email=skip.suva@gmail.com",
+      "secure": true,      
+      "changeOrigin": true
+    }
+  }
